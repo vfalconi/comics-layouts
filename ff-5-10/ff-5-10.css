@@ -1,0 +1,43 @@
+:root {
+	--body-padding: 1rem;
+	--panel-border-width: 1px;
+	--column-count: 4;
+	--row-count: 4;
+	--column-gutter: 2vw;
+	--row-gutter: 2vw;
+	--column-gutter-total: calc(( var(--column-count) - 1 ) * var(--column-gutter));
+	--panel-space: calc(100vw - var(--column-gutter-total) - ( var(--body-padding) * 2 ));
+	--column-width: calc( var(--panel-space) / var(--column-count) );
+	--row-height: calc(var(--column-width) * 1.25);
+}
+
+*,*::before,*::after { box-sizing: border-box; }
+
+body { padding: var(--body-padding); }
+
+.page {
+	display: grid;
+	grid-template-columns: repeat(var(--column-count), var(--column-width));
+	grid-template-rows: repeat(var(--row-count), var(--row-height));
+	grid-template-areas:
+		'panel-1 panel-2 panel-3 panel-4'
+		'panel-5 panel-6 panel-7 panel-8'
+		'panel-9 panel-10 panel-11 panel-12'
+		'panel-13 panel-14 panel-15 panel-16'
+	;
+	grid-column-gap: var(--column-gutter);
+	grid-row-gap: var(--row-gutter);
+	max-width: calc(( var(--column-width) * var(--column-count) ) + var(--column-gutter-total));
+	transform: rotate(.5deg);
+}
+
+.panel {
+	background-color: #006688;
+	border: var(--panel-border-width) solid #111;
+	border-radius: 1px;
+	width: 100%;
+	height: 100%;
+}
+
+.panel-13 { grid-column: panel-13 / panel-14; }
+.panel-14 { grid-column: panel-15 / panel-16; }
